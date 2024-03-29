@@ -35,7 +35,7 @@ After successfully creating a single-node ScyllaDB cluster it is now time to add
 Create a new terminal and execute the following command to create the seed node of our cluster:
 
 ```bash
-docker run --name scylla-seed --hostname scylla-seed --rm scylladb/scylla
+docker run --name scylla-seed --hostname scylla-seed --rm scylladb/scylla --smp 1
 ```
 
 In this command we add we set the hostname `single-node-scylla` in the Docker container network. Using the hostname we can later find the Docker container in the container network - this way we don't need to use it's IP address.
@@ -49,7 +49,7 @@ docker exec -it scylla-seed nodetool status
 Now it is time to add more nodes. We can add ScyllaDB nodes to our cluster by creating more ScyllaDB Docker containers. The difference is that we show the set the seed node of our cluster to our new nodes. This step adds the nodes to our existing cluster instead of creating new clusters. Create a new terminal and execute the following command to add a new node to our cluster:
 
 ```bash
-docker run --name scylla-node --hostname scylla-node --rm scylladb/scylla --seeds "scylla-seed"
+docker run --name scylla-node --hostname scylla-node --rm scylladb/scylla --smp 1 --seeds="$(docker inspect --format='{{ .NetworkSettings.IPAddress }}' scylla-seed)"
 ```
 
 
