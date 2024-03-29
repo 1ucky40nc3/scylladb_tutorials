@@ -14,6 +14,6 @@ license = "Apache-2.0"
 [dependencies]
 chrono = "0.4.37"
 futures = "0.3.30"
-scylla = "0.12.0"
+scylla = { version = "0.12.0", features = ["chrono"] }
 tokio = { version = "1.37.0", features = ["full"] }
 uuid = { version = "1.8.0", features = ["v4"] }

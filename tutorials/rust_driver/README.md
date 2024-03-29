@@ -67,7 +67,7 @@ An example query to get tutorials from our database could be the following:
 
 ```
 SELECT * FROM tutorial.tutorial
-WHERE id = {id}
+WHERE id = ?
 ```
 
 ### 3. Connect to the ScyllaDB Cluster using the Rust Driver
@@ -87,6 +87,17 @@ Initialize the Rust project using the [cargo](https://github.com/rust-lang/cargo
 cargo init
 ```
 
+We implement the code in the [main.rs](./src/main.rs) file.
+
+You can run the Rust application using the following command:
+
+```bash
+# Run the the default `SCYLLA_URI=scylla:9042"`
+cargo run
+# Set a custom `SCYLLA_URI` environment variable
+SCYLLA_URI=127.0.0.1:9042 cargo run
+```
+
 ## Sources
 
 - [ScyllaDB University Lesson: Using the Rust Driver to Interact with a ScyllaDB Cluster](https://www.scylladb.com/2022/01/20/scylla-university-new-rust-lesson/)
@@ -94,3 +105,4 @@ cargo init
 - [Nodetool](https://opensource.docs.scylladb.com/stable/operating-scylla/nodetool.html)
 - [CQL Reference - Data Types](https://opensource.docs.scylladb.com/stable/cql/types.html#data-types)
 - [Cargo](https://github.com/rust-lang/cargo)
+- [Scylla Rust Driver](https://rust-driver.docs.scylladb.com/stable/index.html#scylla-rust-driver)
