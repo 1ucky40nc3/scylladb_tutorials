@@ -89,6 +89,14 @@ Inspect the multi-node ScyllaDB cluster using nodetools:
 docker exec -it scylla-seed nodetool status
 ```
 
+Now we have a multi-node ScyllaDB cluster!
+
+Don't forget to delete the Docker Compose environment at the end. Here is a command to delete the network:
+
+```bash
+docker compose rm
+```
+
 ## Sources
 
 - [Run ScyllaDB in Docker](https://www.scylladb.com/download/?platform=docker#open-source)
