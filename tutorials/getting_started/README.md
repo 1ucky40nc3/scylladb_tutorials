@@ -32,13 +32,16 @@ docker exec -it single-node-scylla cqlsh
 
 After successfully creating a single-node ScyllaDB cluster it is now time to add more nodes. We will now create a multi-node cluster.
 
-Create a new terminal and execute the following command to create the seed node of our cluster:
+Create a new terminal and execute the following commands to create the seed node of our cluster:
 
 ```bash
-docker run --name scylla-seed --hostname scylla-seed --rm scylladb/scylla --smp 1
+# Create a new network for our cluster
+docker network create scylla-network
+# Create the seed node of our cluster
+docker run --name scylla-seed --network scylla-network --rm scylladb/scylla --smp 1
 ```
 
-In this command we add we set the hostname `single-node-scylla` in the Docker container network. Using the hostname we can later find the Docker container in the container network - this way we don't need to use it's IP address.
+In this command we create a new default Docker container network named `scylla-network`. This add the advantage of being able to find our Docker containers in the network easily. We can just use the container's name as the URL - instead of having to provide an IP address.
 
 We can check if the single-node cluster is created by using `docker ps` to check if the container is running and showing the status of our cluster using nodetool:
 
@@ -49,9 +52,42 @@ docker exec -it scylla-seed nodetool status
 Now it is time to add more nodes. We can add ScyllaDB nodes to our cluster by creating more ScyllaDB Docker containers. The difference is that we show the set the seed node of our cluster to our new nodes. This step adds the nodes to our existing cluster instead of creating new clusters. Create a new terminal and execute the following command to add a new node to our cluster:
 
 ```bash
-docker run --name scylla-node --hostname scylla-node --rm scylladb/scylla --smp 1 --seeds="$(docker inspect --format='{{ .NetworkSettings.IPAddress }}' scylla-seed)"
+docker run --name scylla-node --network scylla-network --rm scylladb/scylla --smp 1 --seeds="scylla-seed"
 ```
 
+Using the noodetool command again we can see that another node has joined the ScyllaDB cluster. Here is the command:
+
+```bash
+docker exec -it scylla-seed nodetool status
+```
+
+Now we have a multi-node ScyllaDB cluster!
+
+Don't forget to delete the `scylla-network` Docker container network at the end. Here is a command to delete the network:
+
+```bash
+docker network rm scylla-network
+```
+
+### 4. Creating a Multi-Node ScyllaDB Cluster with Docker Compose
+
+The steps illustrated in the [section above](#3-creating-a-multi-node-scylladb-cluster) can also be automated using Docker Compose. Just start the provided [docker-compose.yml](./docker-compose.yml) file with the following command:
+
+```bash
+docker compose up
+```
+
+List the running Docker Compose containers to check if the `scylla-seed` and `scylla-node` containers are running:
+
+```bash
+docker compose ps
+```
+
+Inspect the multi-node ScyllaDB cluster using nodetools:
+
+```bash
+docker exec -it scylla-seed nodetool status
+```
 
 ## Sources
 

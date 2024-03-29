@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  scylla-seed:
+    image: scylladb/scylla
+    container_name: scylla-seed
+    command: --smp 1
+  
+  scylla-node:
+    image: scylladb/scylla
+    container_name: scylla-node
+    command: --smp 1 --seeds="scylla-seed"
