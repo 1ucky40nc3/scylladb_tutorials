@@ -1,0 +1,19 @@
+[package]
+name = "scylla_rust_driver"
+authors = ["Louis Wendler"]
+version = "0.1.0"
+edition = "2021"
+description = "A demo application for a ScyllaDB Rust driver tutorial."
+readme = "README.md"
+homepage = "https://github.com/1ucky40nc3/scylladb_tutorials"
+repository = "https://github.com/1ucky40nc3/scylladb_tutorials"
+license = "Apache-2.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4.37"
+futures = "0.3.30"
+scylla = "0.12.0"
+tokio = { version = "1.37.0", features = ["full"] }
+uuid = { version = "1.8.0", features = ["v4"] }

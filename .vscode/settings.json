@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
         "cqlsh",
+        "keyspace",
+        "keyspaces",
         "Nodetool",
         "scylladb"
     ]

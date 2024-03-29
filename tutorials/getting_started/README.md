@@ -86,7 +86,7 @@ docker compose ps
 Inspect the multi-node ScyllaDB cluster using `nodetool`:
 
 ```bash
-docker exec -it scylla-seed nodetool status
+docker compose exec -it scylla-seed nodetool status
 ```
 
 Now we have a multi-node ScyllaDB cluster!

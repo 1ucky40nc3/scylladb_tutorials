@@ -12,3 +12,4 @@ You are encouraged to add your own knowledge and experiences to this OpenSource 
 ## Tutorials
 
 - [Getting Started with ScyllaDB](./tutorials/getting_started/README.md)
+- [Using the Rust Driver with ScyllaDB](./tutorials/rust_driver/README.md)
