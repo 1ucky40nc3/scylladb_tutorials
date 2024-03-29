@@ -55,7 +55,7 @@ Now it is time to add more nodes. We can add ScyllaDB nodes to our cluster by cr
 docker run --name scylla-node --network scylla-network --rm scylladb/scylla --smp 1 --seeds="scylla-seed"
 ```
 
-Using the noodetool command again we can see that another node has joined the ScyllaDB cluster. Here is the command:
+Using the `nodetool` command again we can see that another node has joined the ScyllaDB cluster. Here is the command:
 
 ```bash
 docker exec -it scylla-seed nodetool status
@@ -83,7 +83,7 @@ List the running Docker Compose containers to check if the `scylla-seed` and `sc
 docker compose ps
 ```
 
-Inspect the multi-node ScyllaDB cluster using nodetools:
+Inspect the multi-node ScyllaDB cluster using `nodetool`:
 
 ```bash
 docker exec -it scylla-seed nodetool status
