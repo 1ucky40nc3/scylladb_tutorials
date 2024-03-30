@@ -19,6 +19,7 @@
         "opentelemetry",
         "otlp",
         "scylladb",
+        "structs",
         "utoipa",
         "vadimcn"
     ]

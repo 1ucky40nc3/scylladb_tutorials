@@ -95,12 +95,15 @@ Initialize the Rust project using the [cargo](https://github.com/rust-lang/cargo
 cargo init
 ```
 
+Catalytic ORM can automatically map your ScyllaDB tables into Rust structs. This is implemented in the [build.rs](./build.rs) file. Every time we build our Rust application this file automatically creates the Rust structs and saves them in the [src/generated/](./src/generated/) directory. We configure the build environment variables (e.g. ScyllaDB URI, ScyllaDB keyspace) of this step in the [.env](.env) file.
+
+
 We implement the code in the [main.rs](./src/main.rs) file.
 
 You can run the Rust application using the following command:
 
 ```bash
-# Run the the default `SCYLLA_URI=scylla:9042"`
+# Run using the default environment variables from the `.env` file
 cargo run
 # Set a custom `SCYLLA_URI` environment variable
 SCYLLA_URI=127.0.0.1:9042 cargo run
