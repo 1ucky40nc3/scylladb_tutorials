@@ -9,6 +9,8 @@
         "chrono",
         "cqlsh",
         "devcontainer",
+        "dotenv",
+        "dotenvy",
         "keyspace",
         "keyspaces",
         "lldb",
