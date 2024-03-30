@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  rust:
+    image: mcr.microsoft.com/devcontainers/rust:1-1-bullseye
+    volumes:
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+    # Overrides default command so things don't shut down after the process ends.
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
